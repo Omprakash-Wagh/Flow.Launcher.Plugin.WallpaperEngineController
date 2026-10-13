@@ -1,0 +1,41 @@
+name: Release Flow Launcher Plugin
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build-and-release:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x'
+
+      - name: Restore Dependencies
+        run: dotnet restore
+
+      - name: Build Project (Release)
+        run: dotnet publish -c Release -o ./publish
+
+      - name: Prepare Plugin Package
+        shell: pwsh
+        run: |
+          $zipName = "Flow.Launcher.Plugin.WallpaperEngineController.zip"
+          Remove-Item -Path "./publish/*.pdb" -ErrorAction SilentlyContinue
+          Compress-Archive -Path "./publish/*" -DestinationPath $zipName
+          echo "ZIP_PATH=$zipName" >> $env:GITHUB_ENV
+
+      - name: Create GitHub Release & Upload Asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ env.ZIP_PATH }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

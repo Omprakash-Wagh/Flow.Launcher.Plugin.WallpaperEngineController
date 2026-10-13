@@ -1,0 +1,12 @@
+{
+  "ID": "d8b56f2e-4a1c-4e89-9a2c-f37e416d8a20",
+  "Name": "Wallpaper Engine Controller",
+  "Description": "Control Wallpaper Engine (pause, mute, profiles, playlists, recents, and right-click tray actions)",
+  "Author": "Omprakash-Wagh",
+  "Version": "1.0.0",
+  "Language": "csharp",
+  "Website": "https://github.com/Omprakash-Wagh/Flow.Launcher.Plugin.WallpaperEngineController",
+  "ExecuteFileName": "Flow.Launcher.Plugin.WallpaperEngineController.dll",
+  "IcoPath": "Images/icon.png",
+  "ActionKeyword": "wp"
+}

@@ -1,0 +1,18 @@
+# Build and Output Folders
+bin/
+obj/
+publish/
+publish_output/
+*.zip
+
+# Visual Studio / Rider / VSCode
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Audit & scratch docs
+AUDIT_LEDGER.md
